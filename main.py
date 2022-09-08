@@ -1,4 +1,10 @@
 import discord
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TOKEN = os.getenv('TOKEN')
 
 intents = discord.Intents.default()
 intents.voice_states = True
@@ -57,4 +63,4 @@ async def on_voice_state_update(member, before, after):
   except:
     print('Member moved servers.')
 
-client.run('MTAxNjg1MzUxOTU0Mzg0NDk0NA.Gk1HOH.cTffqrtvL34GI63fq4NhPwWRCvzc1Eq5CVz6Cw')
+client.run(TOKEN)
