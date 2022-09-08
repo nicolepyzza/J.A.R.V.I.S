@@ -1,0 +1,23 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "description": "A public, custom discord bot.",
+  "main": "main.py",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolepyzza/J.A.R.V.I.S.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "Nicole Pyzza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolepyzza/J.A.R.V.I.S/issues"
+  },
+  "homepage": "https://github.com/nicolepyzza/J.A.R.V.I.S#readme"
+}
