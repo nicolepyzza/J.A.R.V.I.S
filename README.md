@@ -1,13 +1,11 @@
-## ideas
-1. doorbell
-    when someone joins general, send message to admins (colin, nicole)
+### J.A.R.V.I.S
+A customizable bot built with Python
 
-2. 
+## About
 
+## Features
 
-3. 
+## TODO:
 
-
-4. 
-
-
+## License
+Released under the [Apache License 2.0](https://github.com/Spiderjockey02/Discord-Bot/blob/master/LICENSE) license.
