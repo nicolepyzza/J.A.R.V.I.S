@@ -5,28 +5,30 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TOKEN = os.getenv('TOKEN')
+USER1_TOKEN = os.getenv('NICOLE_ID')
+USER2_TOKEN = os.getenv('COLIN_ID')
 
+## BOT intents
 intents = discord.Intents.default()
 intents.voice_states = True
 intents.members = True
 intents.presences = True
 
 client = discord.Client(intents=intents)
+
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')    
 
-members = discord.utils.get(client.get_all_members(), guild__name='test server', name='General')
-
-async def check_status(nicole, colin):
-  print('Checking if Colin & Nicole are online...')
-  if nicole.status == discord.Status.online and colin.status != discord.Status.online:
-    print('Nicole is online')
-    return 'nicole'
-  elif colin.status == discord.Status.online and nicole.status != discord.Status.online:
-    print ('Colin is online')
-    return 'colin'
-  elif colin.status == discord.Status.online and nicole.status == discord.Status.online:
+async def check_status(user1, user2):
+  print('Checking if Admins are online...')
+  if user1.status == discord.Status.online and user2.status != discord.Status.online:
+    print('Admin1 is online')
+    return 'user1'
+  elif user2.status == discord.Status.online and user1.status != discord.Status.online:
+    print ('Admin2 is online')
+    return 'user2'
+  elif user2.status == discord.Status.online and user1.status == discord.Status.online:
     print('Both are online!')
     return 'both'
   else:
@@ -34,18 +36,17 @@ async def check_status(nicole, colin):
 
 async def send_messages(member, guild):
   guild = client.get_guild(guild)
-  colin = guild.get_member(235537675778523136)
-  nicole = guild.get_member(346823964909371393)
-
-  res = await check_status(nicole, colin)
+  user1 = guild.get_member(USER1_TOKEN)
+  user2 = guild.get_member(USER2_TOKEN)
+  res = await check_status(user1, user2)
 
   if res == 'both':
-    await nicole.send(f'{member} is in the waiting room.')
-    await colin.send(f'{member} is in the waiting room.')
-  elif res == 'nicole':
-    await nicole.send(f'{member} is in the waiting room.')
-  elif res == 'colin':
-    await colin.send(f'{member} is in the waiting room.')
+    await user1.send(f'{member} is in the waiting room.')
+    await user2.send(f'{member} is in the waiting room.')
+  elif res == 'user1':
+    await user1.send(f'{member} is in the waiting room.')
+  elif res == 'user2':
+    await user2.send(f'{member} is in the waiting room.')
   else:
     return 'offline'
 
