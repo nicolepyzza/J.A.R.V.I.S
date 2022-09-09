@@ -71,7 +71,7 @@ async def send_messages(member, guildid):
 async def on_voice_state_update(member, before, after):
   try:
 
-    channel = discord.utils.get(member.guild.voice_channels, name='General')
+    channel = discord.utils.get(member.guild.voice_channels, name='Waiting Room')
 
     if after.channel.id == channel.id:
       msg = await random_message(random_phrases)
