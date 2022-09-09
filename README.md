@@ -4,6 +4,11 @@ A customizable bot built with Python
 ### About
 
 ### Features
+1. Doorbell
+When a user joins the voice channel specified, J.A.R.V.I.S will send a message in the general text channel and alert the users of your choice, as specified in the .env file.
+
+Example: 
+UserA joins a public voice channel, General, while UserB and UserC are in a private voice channel that UserA cannot see. By joining General, J.A.R.V.I.S will alert admins that UserA should be moved to the private chat channel to join friends.
 
 ### Usage
 Running J.A.R.V.I.S locally:
