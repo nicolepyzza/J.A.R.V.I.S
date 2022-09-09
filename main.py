@@ -34,6 +34,7 @@ async def random_message(array):
 
 async def check_status(admin1, admin2):
   print('Checking if Admins are online...')
+
   if admin1.status == discord.Status.online and admin2.status != discord.Status.online:
     print('Admin1 is online')
     return 'user1'
@@ -54,6 +55,7 @@ async def send_messages(member, guildid):
   res = await check_status(user1, user2)
   message = f'{member} is in the waiting room.'
 
+  # if member not in str(user1) or member in str(user2):
   if res == 'both':
     await user1.send(message)
     await user2.send(message)
@@ -63,37 +65,65 @@ async def send_messages(member, guildid):
     await user2.send(message)
   else:
     return 'offline'
-
+  # else:
+  #   print('User is Admin, no message sent.')
 
 @client.event
 async def on_voice_state_update(member, before, after):
   try:
+
     channel = discord.utils.get(member.guild.voice_channels, name='General')
+
     if after.channel.id == channel.id:
-        msg = await random_message(random_phrases)
-        await member.guild.system_channel.send(msg)
-        offline = await send_messages(member.name, member.guild.id)
-        if offline == 'offline':
-          sry = await random_message(woops)
-          time.sleep(3)
-          await member.guild.system_channel.send(sry)
-        print('done')
+      msg = await random_message(random_phrases)
+      await member.guild.system_channel.send(msg)
+      res = await send_messages(member.name, member.guild.id)
+
+      if res == 'offline':
+        #generate message
+        sry = await random_message(woops)
+        #sleep for 3 sec
+        time.sleep(3)
+        #send message
+        await member.guild.system_channel.send(sry)
+
+      print('done')
     
   except:
     print('error')
     # Exception as e:
     #   print(e)
 
+
 @client.event
 async def on_message(message):
+
+  #if @J.A.R.V.I.S is mentioned in message
   if '<@1016853519543844944>' in message.content:
-    msg_channel = message.channel
-    for greeting in acceptable_greetings:
-      if greeting in message.content:
-          res = await random_message(hello)
-          await msg_channel.send(res)
-    if 'you there' in message.content:
-        res = await random_message(here)
-        await msg_channel.send(res)
     
+    #note the channel
+    msg_channel = message.channel
+    msg = message.content.lower()
+    
+    if any(greeting in msg for greeting in acceptable_greetings): 
+      # generate a random greeting
+      res = await random_message(hello)
+
+      # check if MEMBER needs to be replaced with username
+      new_res = await replace_member(res, message.author)
+      
+      await msg_channel.send(new_res)
+
+
+async def replace_member(res, author):
+  search_text = 'MEMBER'
+  replace_text = str(author).split('#', 1)
+
+  if search_text in res:
+    new_res = res.replace(search_text, replace_text[0])
+  else:
+    new_res = res
+
+  return new_res
+
 client.run(TOKEN)

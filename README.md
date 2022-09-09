@@ -25,7 +25,7 @@ Released under the [Apache License 2.0](https://github.com/Spiderjockey02/Discor
 
 ### TODO:
 * msg when user switches servers after joining waiting room
-* random messages
-* check if admins are online AND in the guild
+* populate random messages
 ----
 * jarvis calls
+* fix multiple message sent when appending to if statement

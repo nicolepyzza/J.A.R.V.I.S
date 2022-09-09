@@ -1,11 +1,11 @@
 random_phrases = [
-    "message1",
-    "message2",
+    f"Hi, MEMBER! I've alerted someone that you're in the waiting room. Hang tight, buddy.",
+    "message2, test MEMBER",
     "testmessage",
     "message4532423"
 ]
 
 woops = [
-    "womp womp",
+    "You are not authorized to access this area.",
     "sry not sry"
 ]

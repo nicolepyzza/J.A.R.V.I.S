@@ -2,7 +2,7 @@
   "name": "jarvis",
   "version": "1.0.0",
   "description": "A public, custom discord bot.",
-  "main": "main.py",
+  "main": "run.sh",
   "scripts": {
     "test": "npm test"
   },

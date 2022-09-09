@@ -1,22 +1,24 @@
 who_am_i = [
     "I'm J.A.R.V.I.S. I run the house.",
-    "Hello, I am J.A.R.V.I.S."
+    "Hello, I am J.A.R.V.I.S.",
+    "Greetings, Agent. I'm J.A.R.V.I.S, Mr. Stark's AI computer and assistant."
 ]
 
 hello = [
-    "Oh, hello.",
-    "Greetings.",
+    "Oh, hello, MEMBER.",
+    "Greetings, MEMBER.",
 ]
 
 here = [
-    "At your service.",
+    "At your service, MEMBER.",
     "Engaging interface...",
-    "Indeed."
+    "Indeed I am.",
+    "What can I help you with, MEMBER?"
 ]
 
 goodbye = [
-    "As always, a great pleasure watching you work.",
-    "Please...may I request just a few hours to calibrate-"
+    "As always, a great pleasure watching you work, MEMBER.",
+    "Please, MEMBER...may I request just a few hours to calibrate-"
 ]
 
 ## 1: morning/evening
