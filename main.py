@@ -1,4 +1,3 @@
-from turtle import reset
 import discord
 import os
 import random
