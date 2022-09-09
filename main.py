@@ -1,5 +1,8 @@
 import discord
 import os
+import random
+import time
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -7,6 +10,10 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 USER1_TOKEN = os.getenv('NICOLE_ID')
 USER2_TOKEN = os.getenv('COLIN_ID')
+
+## IMPORT MESSAGES
+from messages import random_phrases
+from messages import woops
 
 ## BOT intents
 intents = discord.Intents.default()
@@ -18,7 +25,13 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')    
+    print(f'We have logged in as {client.user}')
+
+async def random_message():
+  return random.choice(random_phrases)
+
+async def random_apology():
+  return random.choice(woops)
 
 async def check_status(admin1, admin2):
   print('Checking if Admins are online...')
@@ -32,7 +45,7 @@ async def check_status(admin1, admin2):
     print('Both are online!')
     return 'both'
   else:
-    return 'No one is online'
+    return 'none'
 
 async def send_messages(member, guildid):
   guild = client.get_guild(guildid)
@@ -58,10 +71,13 @@ async def on_voice_state_update(member, before, after):
   try:
     channel = discord.utils.get(member.guild.voice_channels, name='General')
     if after.channel.id == channel.id:
-        await member.guild.system_channel.send(f'Hi, {member.name}! I\'ve alerted someone that you\'re in the waiting room. Hang tight, buddy.')
+        msg = await random_message()
+        await member.guild.system_channel.send(msg)
         offline = await send_messages(member.name, member.guild.id)
         if offline == 'offline':
-          await member.guild.system_channel.send('Sorry, no one\'s home to let you in :(')
+          sry = await random_apology()
+          time.sleep(3)
+          await member.guild.system_channel.send(sry)
         print('done')
     if member.guild.name != 'test server':
       print('Member moved servers.')
