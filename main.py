@@ -1,3 +1,4 @@
+from turtle import reset
 import discord
 import os
 import random
@@ -14,6 +15,7 @@ USER2_TOKEN = os.getenv('COLIN_ID')
 ## IMPORT MESSAGES
 from messages import random_phrases
 from messages import woops
+from jarvis import hello, acceptable_greetings, here
 
 ## BOT intents
 intents = discord.Intents.default()
@@ -27,11 +29,8 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-async def random_message():
-  return random.choice(random_phrases)
-
-async def random_apology():
-  return random.choice(woops)
+async def random_message(array):
+  return random.choice(array)
 
 async def check_status(admin1, admin2):
   print('Checking if Admins are online...')
@@ -71,11 +70,11 @@ async def on_voice_state_update(member, before, after):
   try:
     channel = discord.utils.get(member.guild.voice_channels, name='General')
     if after.channel.id == channel.id:
-        msg = await random_message()
+        msg = await random_message(random_phrases)
         await member.guild.system_channel.send(msg)
         offline = await send_messages(member.name, member.guild.id)
         if offline == 'offline':
-          sry = await random_apology()
+          sry = await random_message(woops)
           time.sleep(3)
           await member.guild.system_channel.send(sry)
         print('done')
@@ -85,5 +84,16 @@ async def on_voice_state_update(member, before, after):
     # Exception as e:
     #   print(e)
 
-
+@client.event
+async def on_message(message):
+  if '<@1016853519543844944>' in message.content:
+    msg_channel = message.channel
+    for greeting in acceptable_greetings:
+      if greeting in message.content:
+          res = await random_message(hello)
+          await msg_channel.send(res)
+    if 'you there' in message.content:
+        res = await random_message(here)
+        await msg_channel.send(res)
+    
 client.run(TOKEN)
