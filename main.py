@@ -10,6 +10,7 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 USER1_TOKEN = os.getenv('NICOLE_ID')
 USER2_TOKEN = os.getenv('COLIN_ID')
+CHANNEL = os.getenv('CHANNEL_NAME')
 
 ## IMPORT MESSAGES
 from messages import random_phrases
@@ -71,7 +72,7 @@ async def send_messages(member, guildid):
 async def on_voice_state_update(member, before, after):
   try:
 
-    channel = discord.utils.get(member.guild.voice_channels, name='General')
+    channel = discord.utils.get(member.guild.voice_channels, name=CHANNEL)
 
     if after.channel.id == channel.id:
       msg = await random_message(random_phrases)
