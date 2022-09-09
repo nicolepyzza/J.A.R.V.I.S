@@ -1,4 +1,1 @@
-git+https://github.com/nicolepyzza/J.A.R.V.I.S
 discord
-async-timeout
-asyncio
