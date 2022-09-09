@@ -21,3 +21,11 @@ sh run.sh
 
 ### License
 Released under the [Apache License 2.0](https://github.com/Spiderjockey02/Discord-Bot/blob/master/LICENSE) license.
+
+
+### TODO:
+* msg when user switches servers after joining waiting room
+* random messages
+* check if admins are online AND in the guild
+----
+* jarvis calls

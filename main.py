@@ -79,9 +79,11 @@ async def on_voice_state_update(member, before, after):
           time.sleep(3)
           await member.guild.system_channel.send(sry)
         print('done')
-    if member.guild.name != 'test server':
-      print('Member moved servers.')
+    
   except:
-    print('ERROR')
+    print('error')
+    # Exception as e:
+    #   print(e)
+
 
 client.run(TOKEN)
