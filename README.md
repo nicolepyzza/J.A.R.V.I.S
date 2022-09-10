@@ -19,11 +19,6 @@ sh run.sh
 ### License
 Released under the [Apache License 2.0](https://github.com/Spiderjockey02/Discord-Bot/blob/master/LICENSE) license.
 
-
-### TODO:
-* msg when user switches servers after joining waiting room
-----
-* jarvis calls
-* fix multiple message sent when appending to if statement
-* stop PMS from sending when admins are members
-* stop messages from sending when admins are members
+### Upcoming Release (v2.0):
+* Message when user joins the guild/server
+* More interactions with J.A.R.V.I.S including jokes and general conversation
