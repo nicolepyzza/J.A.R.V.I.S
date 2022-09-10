@@ -56,7 +56,9 @@ async def check_if_admin(member, admin1, admin2):
   try:
     print('Checking if member is an admin...')
     print(f'Admin1: {admin1}, Admin2: {admin2}, Member: {member}')
-    if member == admin1 or member == admin2:
+    if member == admin1:
+      return True
+    elif member == admin2:
       return True
     else:
       return False
@@ -120,15 +122,11 @@ async def on_voice_state_update(member, before, after):
     channel = discord.utils.get(member.guild.voice_channels, name=CHANNEL)
     text_channel = discord.utils.get(member.guild.text_channels, name=TEXT_CHANNEL)
 
-    # Check if Member is Admin
-    is_admin = await check_if_admin(member.id, admin1.id, admin2.id)
-
     # if member is NOT an admin
-    if is_admin == False:
+    if (await check_if_admin(member.id, admin1.id, admin2.id)) == False:
       print('Member is NOT admin')
       # If channel joined == channel specified in env
-      if channel.name == CHANNEL:
-
+      if after.channel.id == channel.id:
         # generate random message
         msg = await random_message(random_phrases)
 
