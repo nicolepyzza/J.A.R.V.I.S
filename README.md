@@ -7,9 +7,6 @@ A customizable bot built with Python
 1. Doorbell
 When a user joins the voice channel specified, J.A.R.V.I.S will send a message in the general text channel and alert the users of your choice, as specified in the .env file.
 
-Example: 
-UserA joins a public voice channel, General, while UserB and UserC are in a private voice channel that UserA cannot see. By joining General, J.A.R.V.I.S will alert admins that UserA should be moved to the private chat channel to join friends.
-
 ### Usage
 Running J.A.R.V.I.S locally:
 1. Fork this repository
@@ -25,7 +22,8 @@ Released under the [Apache License 2.0](https://github.com/Spiderjockey02/Discor
 
 ### TODO:
 * msg when user switches servers after joining waiting room
-* populate random messages
 ----
 * jarvis calls
 * fix multiple message sent when appending to if statement
+* stop PMS from sending when admins are members
+* stop messages from sending when admins are members

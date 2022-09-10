@@ -13,6 +13,7 @@ USER2_TOKEN = os.getenv('COLIN_ID')
 CHANNEL = os.getenv('CHANNEL_NAME')
 TEXT_CHANNEL_ID = os.getenv('TEXT_CHANNEL_ID')
 TEXT_CHANNEL = os.getenv('TEXT_CHANNEL')
+JARVIS_ID = os.getenv('JARVIS_APP')
 
 ## IMPORT MESSAGES
 from messages import random_phrases, woops
@@ -55,7 +56,7 @@ async def check_if_admin(member, admin1, admin2):
   try:
     print('Checking if member is an admin...')
     print(f'Admin1: {admin1}, Admin2: {admin2}, Member: {member}')
-    if member in str(admin1) or member in str(admin2):
+    if member == admin1 or member == admin2:
       return True
     else:
       return False
@@ -120,7 +121,7 @@ async def on_voice_state_update(member, before, after):
     text_channel = discord.utils.get(member.guild.text_channels, name=TEXT_CHANNEL)
 
     # Check if Member is Admin
-    is_admin = await check_if_admin(member.name, admin1, admin2)
+    is_admin = await check_if_admin(member.id, admin1.id, admin2.id)
 
     # if member is NOT an admin
     if is_admin == False:
